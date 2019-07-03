@@ -1,15 +1,19 @@
+const express =require('express')
+const app=express();
 
-const GenerationEngine =require('./engine');
+const GenerationEngine =require('./generation/engine');
 const engine=new GenerationEngine();
-engine.start();
-setTimeout(()=>{
-    engine.stop();
-},20000);
+ engine.start();
+// setTimeout(()=>{
+//     engine.stop();
+// },20000);
+app.get('/dragon/new',(req,res)=>{
+res.json({
+    dragon:engine.generation.newDragon()
+})
+});
 
-
-
-
-
+module.exports=app;
 
 // const Generation =require('./genaration')
 // const generation = new Generation ;
